@@ -1,0 +1,88 @@
+// {
+//     // Use IntelliSense to learn about possible attributes.
+//     // Hover to view descriptions of existing attributes.
+//     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             "type": "node",
+//             "request": "launch",
+//             "name": "Launch Program",
+//             "skipFiles": [
+//                 "<node_internals>/**"
+//             ],
+//             "program": "${workspaceFolder}\\src\\middlewares\\authentication.js"
+//         }
+//     ]
+// }
+
+// {
+//     "version": "0.2.0",
+//     "configurations": [
+//       {
+//         "type": "node",
+//         "request": "launch",
+//         "name": "Launch via ts-node-dev",
+//         "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ts-node-dev",
+//         "args": ["--respawn", "./src/app.js"],
+//         "restart": true,
+//         "console": "integratedTerminal",
+//         "internalConsoleOptions": "neverOpen",
+//         "protocol": "inspector",
+//         "sourceMaps": true,
+//         "outFiles": ["${workspaceFolder}/dist/**/*.js"] // TypeScriptがトランスパイルされる場所に応じて調整
+//       }
+//     ]
+//   }
+
+// {
+//     "version": "0.2.0",
+//     "configurations": [
+//       {
+//         "type": "node",
+//         "request": "launch",
+//         "name": "Launch via ts-node",
+//         "runtimeExecutable": "node", // Node.js を直接実行
+//         "runtimeArgs": [ // ts-nodeをruntimeArgsを通じて指定
+//           "-r",
+//           "ts-node/register", // ts-nodeをrequireする
+//           "-r",
+//           "tsconfig-paths/register" // tsconfigのpathsを解決するため（必要に応じて）
+//         ],
+//         "args": [ // スクリプトのパスをargsに含める
+//           "${workspaceFolder}/src/app.ts" // .jsではなく.tsファイルを指定
+//         ],
+//         "restart": true,
+//         "console": "integratedTerminal",
+//         "internalConsoleOptions": "neverOpen",
+//         "protocol": "inspector",
+//         "sourceMaps": true,
+//         "outFiles": [ // ソースマップが存在する可能性のある場所を指定
+//           "${workspaceFolder}/dist/**/*.js"
+//         ],
+//         "skipFiles": [ // デバッグ時にスキップするファイル
+//           "<node_internals>/**"
+//         ]
+//       }
+//     ]
+//   }
+
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch Node.js",
+        "program": "${workspaceFolder}/src/app.js",
+        "console": "integratedTerminal",
+        "skipFiles": ["<node_internals>/**"]
+      }
+    ]
+  }
+  
+  
+
+
+
+  
