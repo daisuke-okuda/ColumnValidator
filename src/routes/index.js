@@ -43,7 +43,8 @@ router.post('/isempty', [
 
   if (!errors.isEmpty()) {
     //validationMessage = "未入力です。値を入力してください";
-    validationMessage = "Null or Empty";
+    //validationMessage = "Null or Empty";
+    validationMessage = "未入力です。値を入力してください";
     console.log("未入力です。値を入力してください");
     //return res.status(400).json({ errors: errors.array() });
     //return res.sendStatus(200)
@@ -51,38 +52,64 @@ router.post('/isempty', [
   else
   {
     //validationMessage = "値が正常に入力されました";
-    validationMessage = "OK";
+    // validationMessage = "OK";
+    validationMessage = "値が正常に入力されました";
     console.log("値が正常に入力されました");
   }
   //res.sendStatus(200);
 
   //const textValue = JSON.stringify(validationMessage);
    //const query = `mutation {change_simple_column_value(board_id: ${req.body.payload.inputFields.boardId}, item_id: ${req.body.payload.inputFields.itemId}, column_id: "text5", value: "${validationMessage}") {id}}`;
-   const query = {'query' : `mutation {change_simple_column_value(board_id: ${req.body.payload.inputFields.boardId}, item_id: ${req.body.payload.inputFields.itemId}, column_id: "text5", value: "${validationMessage}") {id}}`};
-   console.log(query);
+   //---------------- コメントアウトここから
+   //  const query = {'query' : `mutation {change_simple_column_value(board_id: ${req.body.payload.inputFields.boardId}, item_id: ${req.body.payload.inputFields.itemId}, column_id: "text5", value: "${validationMessage}") {id}}`};
+  //  console.log(query);
 
-  fetch ("http://api.monday.com/v2",{
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': decoded.shortLivedToken
-      //'Authorization': `Bearer ${your_auth_token}`
-    },
-     body: JSON.stringify({
-       'query' : `mutation {change_simple_column_value(board_id: ${req.body.payload.inputFields.boardId}, item_id: ${req.body.payload.inputFields.itemId}, column_id: "text5", value: "${validationMessage}") {id}}`
-     })
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    res.status(200).send(data); // GraphQLの応答をクライアントに送信
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    res.status(500).send({ message: '内部サーバーエラー' });
-  });
+  // fetch ("http://api.monday.com/v2",{
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'Authorization': decoded.shortLivedToken
+  //     //'Authorization': `Bearer ${your_auth_token}`
+  //   },
+  //    body: JSON.stringify({
+  //      'query' : `mutation {change_simple_column_value(board_id: ${req.body.payload.inputFields.boardId}, item_id: ${req.body.payload.inputFields.itemId}, column_id: "text5", value: "${validationMessage}") {id}}`
+  //    })
+  // })
+  // .then(response => response.json())
+  // .then(data => {
+  //   console.log(data);
+  //   res.status(200).send(data); // GraphQLの応答をクライアントに送信
+  // })
+  // .catch(error => {
+  //   console.error('Error:', error);
+  //   res.status(500).send({ message: '内部サーバーエラー' });
+  // });
   //res.sendStatus(200)
   //res.status(200).send({});
+
+  //---------------- コメントアウトここまで
+//---------------- 提案されたコードここから
+  let myHeaders = new Headers(); 
+  myHeaders.append("Authorization", decoded.shortLivedToken); 
+  myHeaders.append("Content-Type", "application/json"); 
+   
+  let queryTwo = JSON.stringify({ 
+    "query": `mutation {change_simple_column_value(board_id: ${req.body.payload.inputFields.boardId}, item_id: ${req.body.payload.inputFields.itemId}, column_id: "text5", value: "${validationMessage}") {id}}` 
+  }); 
+   
+  let requestOptions = { 
+    method: 'POST', 
+    headers: myHeaders, 
+    body: queryTwo, 
+    redirect: 'follow' 
+  }; 
+   
+  fetch("https://api.monday.com/v2", requestOptions) 
+    .then(response => response.text()) 
+    .then(result => console.log(result)) 
+    .catch(error => console.log('error', error)) 
+//---------------- 提案されたコードここまで
+
 });
 
 // .then(response => response.json())
