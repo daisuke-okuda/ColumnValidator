@@ -6,14 +6,14 @@ const fetch = require('node-fetch');
 
 router.use(mondayRoutes);
 
-router.get('/', function (req, res) {
-  res.json(getHealth());
-});
+// router.get('/', function (req, res) {
+//   res.json(getHealth());
+// });
 
-router.get('/health', function (req, res) {
-  res.json(getHealth());
-  res.end();
-});
+// router.get('/health', function (req, res) {
+//   res.json(getHealth());
+//   res.end();
+// });
 
 router.post('/isempty', [
   body('payload.inputFields.columnValue').custom(value => {
@@ -48,14 +48,14 @@ router.post('/isempty', [
   myHeaders.append("Authorization", decoded.shortLivedToken); 
   myHeaders.append("Content-Type", "application/json"); 
    
-  let queryTwo = JSON.stringify({ 
+  let query = JSON.stringify({ 
       "query": `mutation {change_simple_column_value(board_id: ${req.body.payload.inputFields.boardId}, item_id: ${req.body.payload.inputFields.itemId}, column_id: "${req.body.payload.inputFields.targetColumnId}", value: "${validationMessage}") {id}}` 
   }); 
    
   let requestOptions = { 
     method: 'POST', 
     headers: myHeaders, 
-    body: queryTwo, 
+    body: query, 
     redirect: 'follow' 
   }; 
    
@@ -65,11 +65,11 @@ router.post('/isempty', [
     .catch(error => console.log('error', error)) 
 });
 
-function getHealth() {
-  return {
-    ok: true,
-    message: 'Healthy',
-  };
-}
+// function getHealth() {
+//   return {
+//     ok: true,
+//     message: 'Healthy',
+//   };
+// }
 
 module.exports = router;
