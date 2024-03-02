@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "npm run stop && concurrently \"tsnd --respawn ./src/app.js\" \"npm run expose\"",
+    "expose": "mapps tunnel:create -p 8302",
     "start": "npm run stop && concurrently \"npm run server\" \"npm run expose\"",
     "server": "nodemon ./src/app.js",
-    "expose": "mapps tunnel:create -p 8302",
     "stop": "kill-port 8302"
   },
   "nodemonConfig": {
