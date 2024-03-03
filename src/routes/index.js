@@ -33,14 +33,16 @@ router.post('/isempty', [
   let validationMessage;
 
   if (!errors.isEmpty()) {
-    validationMessage = "未入力です。値を入力してください";
+    //validationMessage = "未入力です。値を入力してください";
+    validationMessage = "2"; // 状態カラムに表示される内容：値は無効です
     console.log("未入力です。値を入力してください");
     //return res.status(400).json({ errors: errors.array() });
     //return res.sendStatus(200)
   }
   else
   {
-    validationMessage = "値が正常に入力されました";
+    //validationMessage = "値が正常に入力されました";
+    validationMessage = "1"; // 状態カラムに表示される内容：値は正常です
     console.log("値が正常に入力されました");
   }
 
@@ -49,7 +51,8 @@ router.post('/isempty', [
   myHeaders.append("Content-Type", "application/json"); 
    
   let query = JSON.stringify({ 
-      "query": `mutation {change_simple_column_value(board_id: ${req.body.payload.inputFields.boardId}, item_id: ${req.body.payload.inputFields.itemId}, column_id: "${req.body.payload.inputFields.targetColumnId}", value: "${validationMessage}") {id}}` 
+      "query": `mutation {change_simple_column_value(board_id: ${req.body.payload.inputFields.boardId}, item_id: ${req.body.payload.inputFields.itemId}, column_id: "${req.body.payload.inputFields.targetColumnId}", value: "${validationMessage}") {id}}`
+      //"query": `mutation {change_simple_column_value(board_id: ${req.body.payload.inputFields.boardId}, item_id: ${req.body.payload.inputFields.itemId}, column_id: "${req.body.payload.inputFields.targetColumnId}", value: "1") {id}}` 
   }); 
    
   let requestOptions = { 
