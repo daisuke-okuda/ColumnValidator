@@ -37,13 +37,15 @@ router.post(
 
     if (!errors.isEmpty()) {
       //validationMessage = "未入力です。値を入力してください";
-      validationMessage = '2'; // 状態カラムに表示される内容：値は無効です
+      // validationMessage = '2'; // 状態カラムに表示される内容：値は無効です
+      validationMessage = req.body.payload.inputFields.FailTextValue;
       console.log('未入力です。値を入力してください');
       //return res.status(400).json({ errors: errors.array() });
       //return res.sendStatus(200)
     } else {
       //validationMessage = "値が正常に入力されました";
-      validationMessage = '1'; // 状態カラムに表示される内容：値は正常です
+      // validationMessage = '1'; // 状態カラムに表示される内容：値は正常です
+      validationMessage = req.body.payload.inputFields.SuccessTextValue;
       console.log('値が正常に入力されました');
     }
 
