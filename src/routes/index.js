@@ -6,14 +6,6 @@ const fetch = require('node-fetch');
 
 router.use(mondayRoutes);
 
-// router.get('/', function (req, res) {
-//   res.json(getHealth());
-// });
-// router.get('/health', function (req, res) {
-//   res.json(getHealth());
-//   res.end();
-// });
-
 // Text（テキスト列）の空文字 or Null チェック テキスト列の値がオブジェクト型でやって来るので、普通の
 router.post(
   '/isempty',
@@ -138,6 +130,14 @@ router.post(
     // .catch((error) => console.log('error', error));
   }
 );
+
+// router.get('/', function (req, res) {
+//   res.json(getHealth());
+// });
+// router.get('/health', function (req, res) {
+//   res.json(getHealth());
+//   res.end();
+// });
 
 // function getHealth() {
 //   return {
